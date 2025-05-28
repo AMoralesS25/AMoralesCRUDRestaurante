@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="AMoralesRestauranteModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Restaurante">
+          <Key>
+            <PropertyRef Name="IdRestaurante" />
+          </Key>
+          <Property Name="IdRestaurante" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Capacidad" Type="int" Nullable="false" />
+          <Property Name="Eslogan" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="FechaInaguracion" Type="date" Nullable="false" />
+        </EntityType>
+        <Function Name="RestauranteAdd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Nombre" Type="varchar" Mode="In" />
+          <Parameter Name="Capacidad" Type="int" Mode="In" />
+          <Parameter Name="Eslogan" Type="varchar" Mode="In" />
+          <Parameter Name="FechaInaguracion" Type="date" Mode="In" />
+        </Function>
+        <Function Name="RestauranteDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdRestaurante" Type="int" Mode="In" />
+        </Function>
+        <Function Name="RestauranteGetAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="RestauranteGetById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdRestaurante" Type="int" Mode="In" />
+        </Function>
+        <Function Name="RestauranteUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdRestaurante" Type="int" Mode="In" />
+          <Parameter Name="Nombre" Type="varchar" Mode="In" />
+          <Parameter Name="Capacidad" Type="int" Mode="In" />
+          <Parameter Name="Eslogan" Type="varchar" Mode="In" />
+          <Parameter Name="FechaInaguracion" Type="date" Mode="In" />
+        </Function>
+        <EntityContainer Name="AMoralesRestauranteModelStoreContainer">
+          <EntitySet Name="Restaurante" EntityType="Self.Restaurante" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AMoralesRestauranteModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Restaurante">
+          <Key>
+            <PropertyRef Name="IdRestaurante" />
+          </Key>
+          <Property Name="IdRestaurante" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Capacidad" Type="Int32" Nullable="false" />
+          <Property Name="Eslogan" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FechaInaguracion" Type="DateTime" Nullable="false" Precision="0" />
+        </EntityType>
+        <EntityContainer Name="AMoralesRestauranteEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Restaurantes" EntityType="Self.Restaurante" />
+          <FunctionImport Name="RestauranteAdd">
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Capacidad" Mode="In" Type="Int32" />
+            <Parameter Name="Eslogan" Mode="In" Type="String" />
+            <Parameter Name="FechaInaguracion" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="RestauranteDelete">
+          <Parameter Name="IdRestaurante" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="RestauranteGetById" ReturnType="Collection(AMoralesRestauranteModel.RestauranteGetById_Result)">
+          <Parameter Name="IdRestaurante" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="RestauranteUpdate">
+            <Parameter Name="IdRestaurante" Mode="In" Type="Int32" />
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Capacidad" Mode="In" Type="Int32" />
+            <Parameter Name="Eslogan" Mode="In" Type="String" />
+            <Parameter Name="FechaInaguracion" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="RestauranteGetAll" ReturnType="Collection(AMoralesRestauranteModel.RestauranteGetAll_Result)" />
+        </EntityContainer>
+        <ComplexType Name="RestauranteGetById_Result">
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="Capacidad" Nullable="false" />
+          <Property Type="String" Name="Eslogan" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="FechaInaguracion" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="RestauranteGetAll_Result">
+          <Property Type="Int32" Name="IdRestaurante" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="Capacidad" Nullable="false" />
+          <Property Type="String" Name="Eslogan" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="FechaInaguracion" Nullable="true" MaxLength="30" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="AMoralesRestauranteModelStoreContainer" CdmEntityContainer="AMoralesRestauranteEntities">
+          <EntitySetMapping Name="Restaurantes">
+            <EntityTypeMapping TypeName="AMoralesRestauranteModel.Restaurante">
+              <MappingFragment StoreEntitySet="Restaurante">
+                <ScalarProperty Name="IdRestaurante" ColumnName="IdRestaurante" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Capacidad" ColumnName="Capacidad" />
+                <ScalarProperty Name="Eslogan" ColumnName="Eslogan" />
+                <ScalarProperty Name="FechaInaguracion" ColumnName="FechaInaguracion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="RestauranteAdd" FunctionName="AMoralesRestauranteModel.Store.RestauranteAdd" />
+          <FunctionImportMapping FunctionImportName="RestauranteDelete" FunctionName="AMoralesRestauranteModel.Store.RestauranteDelete" />
+          <FunctionImportMapping FunctionImportName="RestauranteGetById" FunctionName="AMoralesRestauranteModel.Store.RestauranteGetById">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AMoralesRestauranteModel.RestauranteGetById_Result">
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Capacidad" ColumnName="Capacidad" />
+                <ScalarProperty Name="Eslogan" ColumnName="Eslogan" />
+                <ScalarProperty Name="FechaInaguracion" ColumnName="FechaInaguracion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="RestauranteUpdate" FunctionName="AMoralesRestauranteModel.Store.RestauranteUpdate" />
+          <FunctionImportMapping FunctionImportName="RestauranteGetAll" FunctionName="AMoralesRestauranteModel.Store.RestauranteGetAll">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AMoralesRestauranteModel.RestauranteGetAll_Result">
+                <ScalarProperty Name="IdRestaurante" ColumnName="IdRestaurante" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Capacidad" ColumnName="Capacidad" />
+                <ScalarProperty Name="Eslogan" ColumnName="Eslogan" />
+                <ScalarProperty Name="FechaInaguracion" ColumnName="FechaInaguracion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
